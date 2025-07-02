@@ -1,4 +1,4 @@
-# Lending_v2
+# Lending
 
 Este repositório contém o código-fonte do Projeto Lending, que está sendo desenvolvido utilizando os princípios de **Domain-Driven Design (DDD)** e tecnologias como **Java 21**, **Spring Framework**, e o banco de dados **H2**.
 
@@ -60,3 +60,5 @@ Cada pacote representa uma camada ou um agregado importante no projeto:
     JDBC URL: jdbc:h2:mem:lending
     User Name: admin
     Password: admin
+   
+
