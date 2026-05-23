@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "ClientAvro",
+  "namespace": "com.persou.lending.avro",
+  "fields": [
+    {"name": "name", "type": "string"},
+    {"name": "document", "type": "string"},
+    {"name": "email", "type": "string"},
+    {"name": "birthdate", "type": {"type": "int", "logicalType": "date"}}
+  ]
+}
