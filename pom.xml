@@ -142,6 +142,10 @@
                     <excludes>
                         <exclude>**/Application**</exclude>
                     </excludes>
+                    <includes>
+                        <include>**/usecase/**</include>
+                        <include>**/service/**</include>
+                    </includes>
                 </configuration>
                 <executions>
                     <execution>
@@ -202,7 +206,7 @@
                             <goal>schema</goal>
                         </goals>
                         <configuration>
-                            <sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
+                            <sourceDirectory>${project.basedir}/src/main/avro</sourceDirectory>
                             <outputDirectory>${project.build.directory}/generated-sources/avro/</outputDirectory>
                         </configuration>
                     </execution>

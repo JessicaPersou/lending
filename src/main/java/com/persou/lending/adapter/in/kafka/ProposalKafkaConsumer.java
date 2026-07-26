@@ -1,9 +1,6 @@
 package com.persou.lending.adapter.in.kafka;
 
 import com.persou.lending.avro.ClientAvro;
-import com.persou.lending.domain.model.Proposal;
-import com.persou.lending.domain.port.in.ValidAndRegisterClientPortIn;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +17,7 @@ public class ProposalKafkaConsumer {
 
     @KafkaListener(topics = "propostas", groupId = "lending-group")
     public void consumeProposal(ClientAvro proposal) {
-        log.info("Recebendo nova proposta de empréstimo 📝");
+        log.info("Recebendo nova proposta de empréstimo: {}", proposal);
         log.info("Cliente: {} | Documento: {} | E-mail: {}",
             proposal.getName(),
             proposal.getDocument(),

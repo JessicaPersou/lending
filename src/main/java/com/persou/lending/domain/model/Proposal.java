@@ -6,9 +6,8 @@ import java.math.BigDecimal;
 public record Proposal(
     Long id,
     BigDecimal requestValue,
-    BigDecimal installmentsQty,
+    Integer installmentsQty,
     BigDecimal monthlyIncome,
-    StatusAnalisis statusAnalisis,
-    Client client
+    StatusAnalisis statusAnalisis
 ) {
 }

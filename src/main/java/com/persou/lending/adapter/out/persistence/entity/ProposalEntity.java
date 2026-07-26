@@ -33,7 +33,7 @@ public class ProposalEntity {
     @Column(name = "REQUEST_VALUE")
     private BigDecimal requestValue;
     @Column(name = "INSTALLMENTS_QTY")
-    private BigDecimal installmentsQty;
+    private Integer installmentsQty;
     @Column(name = "MONTHLY_INCOME")
     private BigDecimal monthlyIncome;
     @Column(name = "STATUS_ANALISIS")
