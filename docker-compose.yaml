@@ -94,18 +94,19 @@ services:
     restart: "no"
 
   db:
-    image: postgres:15
+    image: mysql:8.4
     container_name: lending-db
     environment:
-      POSTGRES_DB: db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u user -p password"]
       interval: 10s
       timeout: 5s
       retries: 5

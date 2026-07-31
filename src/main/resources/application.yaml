@@ -6,18 +6,17 @@ spring:
     name: lending-project
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/db
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/db
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
     show-sql: true
 
   kafka:

@@ -13,6 +13,7 @@ import com.persou.lending.application.usecase.CreateClienteUseCase;
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
+
     private final CreateClienteUseCase createClienteUseCase;
     private final CreateClientMapper createClientMapper;
 
@@ -24,6 +25,8 @@ public class ClientController {
 
     @PostMapping
     public ResponseEntity<ClientDTO> createClient(@RequestBody ClientDTO clientDTO) {
+
+//        TODO: Adicionar logs inteligentes e também criar Controller advide para deixar as mensagens mais legivéis.
         var clientDomain = createClientMapper.toDomain(clientDTO);
         var createdClient = createClienteUseCase.createClient(clientDomain);
         var responseDTO = createClientMapper.toDto(createdClient);

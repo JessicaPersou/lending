@@ -11,6 +11,9 @@ import static org.mockito.Mockito.when;
 
 import com.persou.lending.domain.model.Client;
 import com.persou.lending.domain.model.Proposal;
+import com.persou.lending.domain.model.valueobject.Birthdate;
+import com.persou.lending.domain.model.valueobject.Cpf;
+import com.persou.lending.domain.model.valueobject.Email;
 import com.persou.lending.domain.port.out.persistence.ClientPersistencePortOut;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -66,9 +69,9 @@ class CreateClienteUseCaseTest {
         return new Client(
             1L,
             "Joao",
-            "12334556778",
-            "emaildojoao@email.com",
-            LocalDate.of(1993, Month.OCTOBER, 10),
+            new Cpf("123.345.567-78"),
+            new Email("emaildojoao@email.com"),
+            new Birthdate(LocalDate.of(1993, Month.OCTOBER, 10)),
             USER,
             ACTIVE,
             List.of(proposal)
