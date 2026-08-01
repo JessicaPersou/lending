@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import com.persou.lending.application.exception.ResourceAlreadyExistsException;
 import com.persou.lending.domain.model.Client;
 import com.persou.lending.domain.model.Proposal;
 import com.persou.lending.domain.model.valueobject.Birthdate;
@@ -38,6 +39,7 @@ class CreateClienteUseCaseTest {
     void createClientShouldDelegateToPersistencePort() {
         Client client = buildClient();
 
+        when(clientPersistencePortOut.existisByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(false);
         when(clientPersistencePortOut.save(client)).thenReturn(client);
 
         Client result = createClienteUseCase.createClient(client);
@@ -47,9 +49,20 @@ class CreateClienteUseCaseTest {
     }
 
     @Test
+    void createClientShouldThrowExceptionWhenClientAlreadyExists() {
+        Client client = buildClient();
+
+        when(clientPersistencePortOut.existisByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(true);
+
+        assertThrows(ResourceAlreadyExistsException.class, () -> createClienteUseCase.createClient(client));
+        verifyNoMoreInteractions(clientPersistencePortOut);
+    }
+
+    @Test
     void createClientShouldPropagateExceptionWhenSaveFails() {
         Client client = buildClient();
 
+        when(clientPersistencePortOut.existisByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(false);
         when(clientPersistencePortOut.save(client)).thenThrow(new RuntimeException("Save failed"));
 
         assertThrows(RuntimeException.class, () -> createClienteUseCase.createClient(client));
