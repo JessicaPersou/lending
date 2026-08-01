@@ -2,15 +2,17 @@ package com.persou.lending.domain.model;
 
 import com.persou.lending.domain.model.enums.ProfileState;
 import com.persou.lending.domain.model.enums.UserRole;
-import java.time.LocalDate;
+import com.persou.lending.domain.model.valueobject.Birthdate;
+import com.persou.lending.domain.model.valueobject.Cpf;
+import com.persou.lending.domain.model.valueobject.Email;
 import java.util.List;
 
 public record Client(
     Long id,
     String name,
-    String document,
-    String email,
-    LocalDate birthdate,
+    Cpf cpf,
+    Email email,
+    Birthdate birthdate,
     UserRole userRole,
     ProfileState profileState,
     List<Proposal> proposal

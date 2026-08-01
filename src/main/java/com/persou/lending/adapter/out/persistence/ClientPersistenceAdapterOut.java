@@ -1,5 +1,6 @@
 package com.persou.lending.adapter.out.persistence;
 
+import com.persou.lending.adapter.out.persistence.entity.ClientEntity;
 import com.persou.lending.adapter.out.persistence.repository.ClientJpaRepository;
 import com.persou.lending.application.mapper.ClientMapper;
 import com.persou.lending.domain.model.Client;
@@ -15,9 +16,14 @@ public class ClientPersistenceAdapterOut implements ClientPersistencePortOut {
     private final ClientMapper clientMapper;
 
     @Override
+    public boolean existsByEmailOrCpf(String email, String cpf) {
+        return clientJpaRepository.existsByEmailOrCpf(email, cpf);
+    }
+
+    @Override
     public Client save(Client client) {
-        var entity = clientMapper.toEntity(client);
-        var saved = clientJpaRepository.save(entity);
+        ClientEntity entity = clientMapper.toEntity(client);
+        ClientEntity saved = clientJpaRepository.save(entity);
         return clientMapper.toDomain(saved);
     }
 }

@@ -17,6 +17,9 @@ import com.persou.lending.adapter.out.persistence.repository.ClientJpaRepository
 import com.persou.lending.application.mapper.ClientMapper;
 import com.persou.lending.domain.model.Client;
 import com.persou.lending.domain.model.Proposal;
+import com.persou.lending.domain.model.valueobject.Birthdate;
+import com.persou.lending.domain.model.valueobject.Cpf;
+import com.persou.lending.domain.model.valueobject.Email;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
@@ -120,9 +123,9 @@ class ClientPersistenceAdapterOutTest {
         return new Client(
             1L,
             "Joao",
-            "12334556778",
-            "emaildojoao@email.com",
-            LocalDate.of(1993, Month.OCTOBER, 10),
+            new Cpf("123.345.567-78"),
+            new Email("emaildojoao@email.com"),
+            new Birthdate(LocalDate.of(1993, Month.OCTOBER, 10)),
             USER,
             ACTIVE,
             List.of(proposal)

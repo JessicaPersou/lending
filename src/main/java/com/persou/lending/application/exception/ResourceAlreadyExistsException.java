@@ -1,7 +1,11 @@
 package com.persou.lending.application.exception;
 
-public class ResourceAlreadyExistsException extends RuntimeException {
+import com.persou.lending.adapter.in.api.exception.ApiException;
+import org.springframework.http.HttpStatus;
+
+public class ResourceAlreadyExistsException extends ApiException {
+
     public ResourceAlreadyExistsException(String message) {
-        super(message);
+        super(message, HttpStatus.CONFLICT);
     }
 }

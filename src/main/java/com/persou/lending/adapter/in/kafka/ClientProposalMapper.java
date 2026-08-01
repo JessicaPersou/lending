@@ -1,6 +1,5 @@
 package com.persou.lending.adapter.in.kafka;
 
-import com.persou.lending.adapter.in.api.dto.ClientDTO;
 import com.persou.lending.avro.ClientAvro;
 import com.persou.lending.domain.model.Proposal;
 import org.mapstruct.Mapper;

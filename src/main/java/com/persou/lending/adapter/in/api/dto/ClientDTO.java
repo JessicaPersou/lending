@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public record ClientDTO(
     String name,
-    String document,
+    String cpf,
     String email,
     LocalDate birthdate
 ) {
