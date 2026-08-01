@@ -2,18 +2,18 @@ package com.persou.lending.application.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class ResourceAlreadyExistsException extends RuntimeException {
+public class ClientMinorAgeException extends RuntimeException {
 
     private final HttpStatus status;
 
-    public ResourceAlreadyExistsException(String message, HttpStatus status) {
+    public ClientMinorAgeException(String message, HttpStatus status) {
         super(message);
         this.status = status;
     }
 
-    public ResourceAlreadyExistsException(String message) {
+    public ClientMinorAgeException(String message) {
         super(message);
-        this.status = HttpStatus.CONFLICT;
+        this.status = HttpStatus.UNPROCESSABLE_ENTITY;
     }
 
     public HttpStatus getStatus() {

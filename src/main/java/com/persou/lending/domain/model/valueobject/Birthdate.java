@@ -6,27 +6,13 @@ import java.time.Period;
 
 public record Birthdate(LocalDate value) {
 
-    public Birthdate(LocalDate value) {
+    public Birthdate {
         if (value == null || value.isAfter(LocalDate.now())) {
             throw new InvalidBirthdateException("Data inválida: " + value);
         }
-
-        Period period = Period.between(value, LocalDate.now());
-        if (period.getYears() < 18) {
-            throw new InvalidBirthdateException("Menor de idade: " + value);
-        }
-        this.value = value;
     }
 
-    public LocalDate today() {
-        return LocalDate.now();
-    }
-
-    public LocalDate ageOfMajority() {
-        return LocalDate.now().minusYears(18);
-    }
-
-    public Period period() {
-        return Period.between(value, LocalDate.now());
+    public int ageAt(LocalDate reference) {
+        return Period.between(value, reference).getYears();
     }
 }

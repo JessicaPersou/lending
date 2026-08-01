@@ -25,38 +25,50 @@ public interface CreateClientMapper {
     Client toDomain(ClientDTO dto);
 
     @Named("toEmailDto")
-    default String toEmailDto(Email email){
-        if(email == null) return null;
+    default String toEmailDto(Email email) {
+        if (email == null) {
+            return null;
+        }
         return email.value();
     }
 
     @Named("toEmailDomain")
-    default Email toEmailDomain(String email){
-        if(email == null) return null;
+    default Email toEmailDomain(String email) {
+        if (email == null) {
+            return null;
+        }
         return new Email(email);
     }
 
     @Named("toCpfDto")
-    default String toCpfDto(Cpf cpf){
-        if(cpf == null) return null;
+    default String toCpfDto(Cpf cpf) {
+        if (cpf == null) {
+            return null;
+        }
         return cpf.value();
     }
 
     @Named("toCpfDomain")
-    default Cpf toCpfDomain(String cpf){
-        if(cpf == null) return null;
+    default Cpf toCpfDomain(String cpf) {
+        if (cpf == null) {
+            return null;
+        }
         return new Cpf(cpf);
     }
 
     @Named("toBirthdateEntity")
-    default LocalDate toLocalDate(Birthdate birthdate){
-        if(birthdate == null) return null;
+    default LocalDate toLocalDate(Birthdate birthdate) {
+        if (birthdate == null) {
+            return null;
+        }
         return birthdate.value();
     }
 
     @Named("toBirthdateDomain")
-    default Birthdate toBirthdateDomain(LocalDate birthdate){
-        if(birthdate == null) return null;
+    default Birthdate toBirthdateDomain(LocalDate birthdate) {
+        if (birthdate == null) {
+            return null;
+        }
         return new Birthdate(birthdate);
     }
 }

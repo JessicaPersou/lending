@@ -1,4 +1,5 @@
 package com.persou.lending.adapter.out.persistence.entity;
+
 import com.persou.lending.domain.model.enums.PaymentStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

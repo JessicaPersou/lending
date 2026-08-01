@@ -8,4 +8,5 @@ public record Contract(
     com.persou.lending.domain.model.enums.ContractStatus status,
     Proposal proposal,
     Client client
-) {}
+) {
+}

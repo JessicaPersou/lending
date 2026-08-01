@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class ProposalKafkaConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(ProposalKafkaConsumer.class);
-//    private final ValidAndRegisterClientPortIn validAndRegisterClientPortIn;
-    private final ClientProposalMapper  clientProposalMapper;
+    //    private final ValidAndRegisterClientPortIn validAndRegisterClientPortIn;
+    private final ClientProposalMapper clientProposalMapper;
 
     @KafkaListener(topics = "propostas", groupId = "lending-group")
     public void consumeProposal(ClientAvro proposal) {

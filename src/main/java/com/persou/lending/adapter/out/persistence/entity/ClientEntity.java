@@ -41,7 +41,8 @@ public class ClientEntity {
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private ContractEntity contract;
 
-    public ClientEntity(){}
+    public ClientEntity() {
+    }
 
     public ClientEntity(Long id, String name, String document, String email, LocalDate birthdate, UserRole userRole,
                         ProfileState profileState, List<ProposalEntity> proposals, ContractEntity contract) {
