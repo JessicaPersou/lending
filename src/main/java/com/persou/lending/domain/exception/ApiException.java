@@ -1,4 +1,4 @@
-package com.persou.lending.adapter.in.api.exception;
+package com.persou.lending.domain.exception;
 
 import org.springframework.http.HttpStatus;
 

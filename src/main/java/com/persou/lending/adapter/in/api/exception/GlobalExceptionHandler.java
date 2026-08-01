@@ -1,5 +1,6 @@
 package com.persou.lending.adapter.in.api.exception;
 
+import com.persou.lending.domain.exception.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import org.slf4j.Logger;

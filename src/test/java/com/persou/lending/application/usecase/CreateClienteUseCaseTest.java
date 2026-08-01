@@ -5,10 +5,13 @@ import static com.persou.lending.domain.model.enums.StatusAnalisis.PENDING;
 import static com.persou.lending.domain.model.enums.UserRole.USER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import com.persou.lending.application.exception.ClientMinorAgeException;
 import com.persou.lending.application.exception.ResourceAlreadyExistsException;
 import com.persou.lending.domain.model.Client;
 import com.persou.lending.domain.model.Proposal;
@@ -70,6 +73,16 @@ class CreateClienteUseCaseTest {
         verifyNoMoreInteractions(clientPersistencePortOut);
     }
 
+    @Test
+    void createClientShouldThrowExceptionWhenClientIsMinor() {
+        Client client = buildClientWithBirthdate(LocalDate.now().minusYears(15));
+
+        when(clientPersistencePortOut.existsByEmailOrCpf(any(), any())).thenReturn(false);
+
+        assertThrows(ClientMinorAgeException.class, () -> createClienteUseCase.createClient(client));
+        verify(clientPersistencePortOut, never()).save(any());
+    }
+
     private static Client buildClient() {
         Proposal proposal = new Proposal(
             1L,
@@ -85,6 +98,27 @@ class CreateClienteUseCaseTest {
             new Cpf("123.345.567-78"),
             new Email("emaildojoao@email.com"),
             new Birthdate(LocalDate.of(1993, Month.OCTOBER, 10)),
+            USER,
+            ACTIVE,
+            List.of(proposal)
+        );
+    }
+
+    private static Client buildClientWithBirthdate(LocalDate birthdate) {
+        Proposal proposal = new Proposal(
+            1L,
+            new BigDecimal("1200.00"),
+            12,
+            new BigDecimal("120.00"),
+            PENDING
+        );
+
+        return new Client(
+            1L,
+                "Joao",
+                new Cpf("123.345.567-78"),
+            new Email("emaildojoao@email.com"),
+            new Birthdate(birthdate),
             USER,
             ACTIVE,
             List.of(proposal)
