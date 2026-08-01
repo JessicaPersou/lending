@@ -100,6 +100,7 @@ class CreateClienteUseCaseTest {
             new Birthdate(LocalDate.of(1993, Month.OCTOBER, 10)),
             USER,
             ACTIVE,
+            "123",
             List.of(proposal)
         );
     }
@@ -121,6 +122,7 @@ class CreateClienteUseCaseTest {
             new Birthdate(birthdate),
             USER,
             ACTIVE,
+            "123",
             List.of(proposal)
         );
     }

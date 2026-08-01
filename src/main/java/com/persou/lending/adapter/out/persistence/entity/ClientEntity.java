@@ -36,6 +36,8 @@ public class ClientEntity {
     @Column(name = "PROFILE_STATE")
     @Enumerated(EnumType.STRING)
     private ProfileState profileState;
+    @Column(name = "PASSWORD_HASH")
+    private String passwordHash;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProposalEntity> proposals;
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -45,7 +47,7 @@ public class ClientEntity {
     }
 
     public ClientEntity(Long id, String name, String document, String email, LocalDate birthdate, UserRole userRole,
-                        ProfileState profileState, List<ProposalEntity> proposals, ContractEntity contract) {
+                        ProfileState profileState, String passwordHash, List<ProposalEntity> proposals, ContractEntity contract) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -53,6 +55,7 @@ public class ClientEntity {
         this.birthdate = birthdate;
         this.userRole = userRole;
         this.profileState = profileState;
+        this.passwordHash = passwordHash;
         this.proposals = proposals;
         this.contract = contract;
     }
@@ -111,6 +114,13 @@ public class ClientEntity {
 
     public void setProfileState(ProfileState profileState) {
         this.profileState = profileState;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+    public void setPasswordHash(String hashCodeToken) {
+        this.passwordHash = hashCodeToken;
     }
 
     public List<ProposalEntity> getProposals() {
