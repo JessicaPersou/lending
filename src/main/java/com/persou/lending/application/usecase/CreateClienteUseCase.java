@@ -23,7 +23,7 @@ public class CreateClienteUseCase {
     public Client createClient(Client client) {
         Email email = client.email();
         Cpf cpf = client.cpf();
-        if (clientPersistencePortOut.existisByEmailOrCpf(email.value(), cpf.value())) {
+        if (clientPersistencePortOut.existsByEmailOrCpf(email.value(), cpf.value())) {
             throw new ResourceAlreadyExistsException("Cliente já cadastrado");
         }
         if (client.birthdate().ageAt(LocalDate.now()) < 18) {

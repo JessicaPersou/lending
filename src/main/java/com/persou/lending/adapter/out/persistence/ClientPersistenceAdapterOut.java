@@ -16,8 +16,8 @@ public class ClientPersistenceAdapterOut implements ClientPersistencePortOut {
     private final ClientMapper clientMapper;
 
     @Override
-    public boolean existisByEmailOrCpf(String email, String cpf) {
-        return clientJpaRepository.existisByEmailOrCpf(email, cpf);
+    public boolean existsByEmailOrCpf(String email, String cpf) {
+        return clientJpaRepository.existsByEmailOrCpf(email, cpf);
     }
 
     @Override

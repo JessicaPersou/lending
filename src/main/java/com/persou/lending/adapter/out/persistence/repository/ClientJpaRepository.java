@@ -11,5 +11,5 @@ public interface ClientJpaRepository extends JpaRepository<ClientEntity, Long> {
             FROM ClientEntity c
             WHERE c.email = :email OR c.document = :cpf
         """)
-    boolean existisByEmailOrCpf(String email, String cpf);
+    boolean existsByEmailOrCpf(String email, String cpf);
 }

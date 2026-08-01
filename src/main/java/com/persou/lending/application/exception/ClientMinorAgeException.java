@@ -1,22 +1,11 @@
 package com.persou.lending.application.exception;
 
+import com.persou.lending.adapter.in.api.exception.ApiException;
 import org.springframework.http.HttpStatus;
 
-public class ClientMinorAgeException extends RuntimeException {
-
-    private final HttpStatus status;
-
-    public ClientMinorAgeException(String message, HttpStatus status) {
-        super(message);
-        this.status = status;
-    }
+public class ClientMinorAgeException extends ApiException {
 
     public ClientMinorAgeException(String message) {
-        super(message);
-        this.status = HttpStatus.UNPROCESSABLE_ENTITY;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
+        super(message, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }

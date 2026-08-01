@@ -1,22 +1,11 @@
 package com.persou.lending.application.exception;
 
+import com.persou.lending.adapter.in.api.exception.ApiException;
 import org.springframework.http.HttpStatus;
 
-public class ResourceAlreadyExistsException extends RuntimeException {
-
-    private final HttpStatus status;
-
-    public ResourceAlreadyExistsException(String message, HttpStatus status) {
-        super(message);
-        this.status = status;
-    }
+public class ResourceAlreadyExistsException extends ApiException {
 
     public ResourceAlreadyExistsException(String message) {
-        super(message);
-        this.status = HttpStatus.CONFLICT;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
+        super(message, HttpStatus.CONFLICT);
     }
 }

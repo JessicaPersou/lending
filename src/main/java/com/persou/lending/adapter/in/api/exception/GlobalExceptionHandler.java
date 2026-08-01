@@ -1,7 +1,5 @@
 package com.persou.lending.adapter.in.api.exception;
 
-import com.persou.lending.application.exception.ClientMinorAgeException;
-import com.persou.lending.application.exception.ResourceAlreadyExistsException;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import org.slf4j.Logger;
@@ -16,22 +14,9 @@ public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(ResourceAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleDomainException(ResourceAlreadyExistsException ex,
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<ErrorResponse> handleDomainException(ApiException ex,
                                                                HttpServletRequest request) {
-        log.warn("Erro de domínio: {}", ex.getMessage());
-        var body = new ErrorResponse(
-            Instant.now(),
-            ex.getStatus().value(),
-            ex.getStatus().getReasonPhrase(),
-            ex.getMessage(),
-            request.getRequestURI()
-        );
-        return ResponseEntity.status(ex.getStatus()).body(body);
-    }
-
-    @ExceptionHandler(ClientMinorAgeException.class)
-    public ResponseEntity<ErrorResponse> handleDomainException(ClientMinorAgeException ex, HttpServletRequest request) {
         log.warn("Erro de domínio: {}", ex.getMessage());
         var body = new ErrorResponse(
             Instant.now(),

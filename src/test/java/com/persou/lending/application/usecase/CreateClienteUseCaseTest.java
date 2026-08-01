@@ -39,7 +39,7 @@ class CreateClienteUseCaseTest {
     void createClientShouldDelegateToPersistencePort() {
         Client client = buildClient();
 
-        when(clientPersistencePortOut.existisByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(false);
+        when(clientPersistencePortOut.existsByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(false);
         when(clientPersistencePortOut.save(client)).thenReturn(client);
 
         Client result = createClienteUseCase.createClient(client);
@@ -52,7 +52,7 @@ class CreateClienteUseCaseTest {
     void createClientShouldThrowExceptionWhenClientAlreadyExists() {
         Client client = buildClient();
 
-        when(clientPersistencePortOut.existisByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(true);
+        when(clientPersistencePortOut.existsByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(true);
 
         assertThrows(ResourceAlreadyExistsException.class, () -> createClienteUseCase.createClient(client));
         verifyNoMoreInteractions(clientPersistencePortOut);
@@ -62,7 +62,7 @@ class CreateClienteUseCaseTest {
     void createClientShouldPropagateExceptionWhenSaveFails() {
         Client client = buildClient();
 
-        when(clientPersistencePortOut.existisByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(false);
+        when(clientPersistencePortOut.existsByEmailOrCpf(client.email().value(), client.cpf().value())).thenReturn(false);
         when(clientPersistencePortOut.save(client)).thenThrow(new RuntimeException("Save failed"));
 
         assertThrows(RuntimeException.class, () -> createClienteUseCase.createClient(client));

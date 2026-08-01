@@ -1,7 +1,11 @@
 package com.persou.lending.domain.exception;
 
-public class InvalidClient extends RuntimeException {
+import com.persou.lending.adapter.in.api.exception.ApiException;
+import org.springframework.http.HttpStatus;
+
+public class InvalidClient extends ApiException {
     public InvalidClient(String message) {
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
+
 }

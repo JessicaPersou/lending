@@ -1,7 +1,11 @@
 package com.persou.lending.domain.exception;
 
-public class InvalidBirthdateException extends RuntimeException {
+import com.persou.lending.adapter.in.api.exception.ApiException;
+import org.springframework.http.HttpStatus;
+
+public class InvalidBirthdateException extends ApiException {
     public InvalidBirthdateException(String message) {
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
+
 }
