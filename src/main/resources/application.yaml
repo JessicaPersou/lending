@@ -21,6 +21,9 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092
+    topic:
+      cliente-cadastrado: cliente-cadastrado
+
 
     admin:
       auto-create: true

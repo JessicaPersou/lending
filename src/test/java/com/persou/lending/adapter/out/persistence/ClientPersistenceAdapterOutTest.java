@@ -128,7 +128,6 @@ class ClientPersistenceAdapterOutTest {
             new Birthdate(LocalDate.of(1993, Month.OCTOBER, 10)),
             USER,
             ACTIVE,
-            "123",
             List.of(proposal)
         );
     }

@@ -2,9 +2,11 @@ package com.persou.lending.application.usecase;
 
 import com.persou.lending.application.exception.ClientMinorAgeException;
 import com.persou.lending.application.exception.ResourceAlreadyExistsException;
+import com.persou.lending.domain.event.ActivationClientEvent;
 import com.persou.lending.domain.model.AccountActivationToken;
 import com.persou.lending.domain.model.Client;
 import com.persou.lending.domain.model.enums.ProfileState;
+import com.persou.lending.domain.port.out.event.EventPublisherPort;
 import com.persou.lending.domain.port.out.persistence.AccountActivationTokenPortOut;
 import com.persou.lending.domain.port.out.persistence.ClientPersistencePortOut;
 import jakarta.transaction.Transactional;
@@ -16,11 +18,14 @@ public class CreateClienteUseCase {
     private static final Integer OF_LEGAL_AGE = 18;
     private final ClientPersistencePortOut clientPersistencePortOut;
     private final AccountActivationTokenPortOut accountActivationTokenPortOut;
+    private final EventPublisherPort eventPublisherPort;
 
     public CreateClienteUseCase(ClientPersistencePortOut clientPersistencePortOut,
-                                AccountActivationTokenPortOut accountActivationTokenPortOut) {
+                                AccountActivationTokenPortOut accountActivationTokenPortOut,
+                                EventPublisherPort eventPublisherPort) {
         this.clientPersistencePortOut = clientPersistencePortOut;
         this.accountActivationTokenPortOut = accountActivationTokenPortOut;
+        this.eventPublisherPort = eventPublisherPort;
     }
 
     @Transactional
@@ -33,8 +38,8 @@ public class CreateClienteUseCase {
         );
 
         Client saved = clientPersistencePortOut.save(clientReadyToSave);
-        AccountActivationToken generatedToken = generateToken(saved.id());
-        //aqui deve chamar o metodo que publica o evento para desparar o email, passando email, token e id do client
+        ActivationClientEvent generatedToken = generateToken(saved);
+        eventPublisherPort.publish(generatedToken);
         return saved;
     }
 
@@ -50,7 +55,8 @@ public class CreateClienteUseCase {
         }
     }
 
-    private AccountActivationToken generateToken(Long clientId) {
-        return accountActivationTokenPortOut.generateTokenAndSave(clientId);
+    private ActivationClientEvent generateToken(Client client) {
+        AccountActivationToken token = accountActivationTokenPortOut.generateTokenAndSave(client.id());
+        return new ActivationClientEvent(client.id(), token.token(), client.email().value());
     }
 }

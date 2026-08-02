@@ -28,4 +28,6 @@ public class AccountActivationTokenEntity {
     private Instant expiresAt;
     @Column(name = "USED")
     private boolean used;
+    @Column(name = "CLIENT_ID")
+    private Long clientId;
 }

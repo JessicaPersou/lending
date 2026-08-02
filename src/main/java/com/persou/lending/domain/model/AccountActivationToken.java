@@ -3,7 +3,7 @@ package com.persou.lending.domain.model;
 import java.time.Instant;
 
 public record AccountActivationToken(
-    Long idClient,
+    Long clientId,
     String token,
     Instant expiresAt,
     boolean used

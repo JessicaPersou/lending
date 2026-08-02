@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "name": "ActivationClientAvro",
+  "namespace": "com.persou.lending.avro",
+  "fields": [
+    {"name": "clientId", "type": "long"},
+    {"name": "email", "type": "string"},
+    {"name": "activationToken", "type": "string"}
+  ]
+}

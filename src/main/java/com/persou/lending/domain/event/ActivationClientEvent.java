@@ -4,6 +4,7 @@ import com.persou.lending.domain.model.valueobject.Email;
 
 public record ActivationClientEvent(
     Long clientId,
-    Email email
+    String email,
+    String token
 ){
 }

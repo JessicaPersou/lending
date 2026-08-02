@@ -18,6 +18,6 @@ public record Client(
     List<Proposal> proposal
 ) {
     public Client withProfileState(ProfileState newState) {
-        return new Client(id, name, cpf, email, birthdate, UserRole.USER, newState, proposal);
+        return new Client(id, name, cpf, email, birthdate, this.userRole, newState, proposal);
     }
 }
